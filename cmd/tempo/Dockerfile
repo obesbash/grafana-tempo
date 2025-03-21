@@ -4,7 +4,7 @@ COPY ./main.go ./
 COPY go.mod ./
 
 RUN go mod download
-RUN CGO_ENABLED=0 GOAMD64=v2 go build -mod=mod -o ./bin/linux/tempo-amd64 main.go
+RUN CGO_ENABLED=0 GOAMD64=v2 go build -mod=readonly -o ./bin/linux/tempo-amd64 main.go
 
 FROM alpine:latest AS ca-certificates
 RUN apk add --update --no-cache ca-certificates
