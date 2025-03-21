@@ -1,3 +1,11 @@
+FROM golang:1.24.1
+
+COPY ./main.go ./
+COPY ./pkg ./tempo/pkg
+COPY ./app ./tempo/app
+COPY ./build ./tempo/build
+RUN CGO_ENABLED=0 GOAMD64=v2 go build -mod vendor -o ./bin/linux/tempo-amd64  main.go
+
 FROM alpine:latest AS ca-certificates
 RUN apk add --update --no-cache ca-certificates
 
