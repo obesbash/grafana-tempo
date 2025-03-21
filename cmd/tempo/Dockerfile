@@ -1,7 +1,7 @@
 FROM golang:1.24.1 AS builder
 
 COPY ./main.go ./
-COPY go.mod go.sum ./
+COPY go.mod ./
 
 RUN go mod download
 RUN CGO_ENABLED=0 GOAMD64=v2 go build -mod vendor -o ./bin/linux/tempo-amd64 main.go
